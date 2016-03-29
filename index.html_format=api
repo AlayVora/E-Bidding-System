@@ -1,0 +1,163 @@
+
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        
+
+            
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                <meta name="robots" content="NONE,NOARCHIVE" />
+            
+
+            <title>Django REST framework</title>
+
+            
+                
+                    <link rel="stylesheet" type="text/css" href="/static/rest_framework/css/bootstrap.min.css"/>
+                    <link rel="stylesheet" type="text/css" href="/static/rest_framework/css/bootstrap-tweaks.css"/>
+                
+                <link rel="stylesheet" type="text/css" href="/static/rest_framework/css/prettify.css"/>
+                <link rel="stylesheet" type="text/css" href="/static/rest_framework/css/default.css"/>
+            
+
+        
+    </head>
+
+    
+    <body class="">
+
+        <div class="wrapper">
+
+            
+                <div class="navbar navbar-static-top navbar-inverse">
+                    <div class="container">
+                        <span>
+                            
+                                <a class='navbar-brand' rel="nofollow" href='http://www.django-rest-framework.org'>
+                                    Django REST framework <span class="version">3.1.0</span>
+                                </a>
+                            
+                        </span>
+                        <ul class="nav navbar-nav pull-right">
+                            
+                                
+                                    <li><a href='/api-auth/login/?next=/'>Log in</a></li>
+                                
+                            
+                        </ul>
+                    </div>
+                </div>
+            
+
+            <div class="container">
+            
+                <ul class="breadcrumb">
+                    
+                        
+                            <li class="active"><a href="/">Api Root</a></li>
+                        
+                    
+                </ul>
+            
+
+            <!-- Content -->
+            <div id="content">
+
+                
+                    <form id="get-form" class="pull-right">
+                        <fieldset>
+                            <div class="btn-group format-selection">
+                                <a class="btn btn-primary js-tooltip" href='/?format=api'
+                                     rel="nofollow" title="Make a GET request on the Api Root resource">GET</a>
+
+                                <button class="btn btn-primary dropdown-toggle js-tooltip" data-toggle="dropdown"
+                                        title="Specify a format for the GET request">
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    
+                                        <li>
+                                            <a class="js-tooltip format-option"
+                                                href='/?format=json'
+                                                 rel="nofollow"
+                                               title="Make a GET request on the Api Root resource with the format set to `json`">
+                                                json
+                                            </a>
+                                        </li>
+                                    
+                                        <li>
+                                            <a class="js-tooltip format-option"
+                                                href='/?format=api'
+                                                 rel="nofollow"
+                                               title="Make a GET request on the Api Root resource with the format set to `api`">
+                                                api
+                                            </a>
+                                        </li>
+                                    
+                                </ul>
+                            </div>
+                        </fieldset>
+                    </form>
+                
+
+                
+                    <form class="button-form" action="/?format=api" method="POST">
+                        <input type='hidden' name='csrfmiddlewaretoken' value='3rPR2sB5e5vlu1JDCJuys3OPXvSeN794' />
+                        <input type="hidden" name="_method" value="OPTIONS" />
+                        <button class="btn btn-primary js-tooltip"
+                                title="Make an OPTIONS request on the Api Root resource">OPTIONS</button>
+                    </form>
+                
+
+                
+
+                <div class="content-main">
+                    <div class="page-header">
+                        <h1>Api Root</h1>
+                    </div>
+                    <div style="float:left">
+                    
+                        
+                    
+                    </div>
+
+                    
+
+                    <div class="request-info" style="clear: both" >
+                        <pre class="prettyprint"><b>GET</b> /?format=api</pre>
+                    </div>
+                    <div class="response-info">
+                        <pre class="prettyprint"><span class="meta nocode"><b>HTTP 200 OK</b>
+<b>Content-Type:</b> <span class="lit">application/json</span>
+<b>Allow:</b> <span class="lit">GET, HEAD, OPTIONS</span>
+<b>Vary:</b> <span class="lit">Accept</span>
+
+</span>{
+    &quot;snippets&quot;: &quot;<a href="http://restframework.herokuapp.com/snippets/" rel="nofollow">http://restframework.herokuapp.com/snippets/</a>&quot;,
+    &quot;users&quot;: &quot;<a href="http://restframework.herokuapp.com/users/" rel="nofollow">http://restframework.herokuapp.com/users/</a>&quot;
+}</pre>
+                    </div>
+                </div>
+
+                
+
+                    
+
+                    
+                
+            </div>
+            <!-- END Content -->
+            </div><!-- /.container -->
+        </div><!-- ./wrapper -->
+
+        
+            <script src="/static/rest_framework/js/jquery-1.8.1-min.js"></script>
+            <script src="/static/rest_framework/js/bootstrap.min.js"></script>
+            <script src="/static/rest_framework/js/prettify-min.js"></script>
+            <script src="/static/rest_framework/js/default.js"></script>
+        
+    </body>
+    
+</html>

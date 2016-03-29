@@ -1,0 +1,6 @@
+1	Track Pants		20$
+2	Jeans			30$
+3	Cap				10$
+4	Coat			35$
+5	T-shirt			11$
+6	Tie				09$

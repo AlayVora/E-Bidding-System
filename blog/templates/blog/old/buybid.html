@@ -1,0 +1,28 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+{% load staticfiles %}
+<table border="0" align="centre">
+	<tr>
+		<td align="center" valign="middle"><img style="margin-left:250px" src={% static 'blog/images/4/doll2.png' %} alt="" /></td>
+		<td align="center" valign="middle" >
+			<h1 style="margin-left:110px; color:orange">Buy bids</h1>
+			<span style="width:200px;margin-left:110px;color: red;" id="error_msg">{{ error }}</span>
+			<pre style="width:200px;margin-left:120px;color:orange" ><h3> $1=1 bid</h3><h4>Available Bids: {{bids}} </h4></pre>
+			<div>
+			<div  class="login-form">
+			<form action="{% url 'buy_bids'  %}" method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			<table>
+			{{ form.as_table }}
+			<tr><td></td><td><input type="submit" value="Submit"/></td></tr>
+			</table>
+			</form>
+			</div>
+			</div>
+			
+		</td>
+		<td><img style="margin-left:100px" src={% static 'blog/images/4/doll2.png' %} alt="" /></td>
+	</tr>	
+</table>
+
+{% endblock content %}

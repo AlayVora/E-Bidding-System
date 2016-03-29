@@ -1,0 +1,257 @@
+{% load staticfiles %}
+<html lang="en">
+<head>
+<script>
+$(document).ready(function() {
+
+    $("#select1").searchable();
+
+});
+
+</script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Bidding</title>
+    <link href={% static 'blog/css/js-image-slider.css' %} rel="stylesheet">
+    <link href={% static 'blog/css/generic.css' %} rel="stylesheet">
+    <link href={% static 'blog/css/bootstrap.min.css' %} rel="stylesheet">
+    <link href={% static 'blog/css/font-awesome.min.css' %} rel="stylesheet">
+    <link href={% static 'blog/css/prettyPhoto.css' %} rel="stylesheet">
+    <link href={% static 'blog/css/price-range.css' %} rel="stylesheet">
+    <link href={% static 'blog/css/animate.css' %} rel="stylesheet">
+    <link href={% static 'blog/css/main.css' %} rel="stylesheet">
+    <link href={% static 'blog/css/responsive.css' %} rel="stylesheet">
+	 <link href={% static 'blog/css/jquery.datetimepicker.css' %} rel="stylesheet">
+
+
+    <script src={% static 'blog/js/jquery-1.9.1.min.js' %} ></script>
+    <script src={% static 'blog/js/jquery.cookie.js' %} ></script>
+	 <script src={% static 'blog/js/jquery.datetimepicker.js' %} ></script>
+	 <script src={% static 'jquery.zoom.js'%}></script>
+
+    <link rel="shortcut icon" href={% static 'blog/images/ico/favicon.ico' %} >
+    <link rel="shortcut icon" href={% static 'blog/images/ico/apple-touch-icon-144-precomposed.png' %} >
+    <link rel="shortcut icon" href={% static 'blog/images/ico/apple-touch-icon-114-precomposed.png' %} >
+    <link rel="shortcut icon" href={% static 'blog/images/ico/apple-touch-icon-72-precomposed.png' %} >
+    <link rel="shortcut icon" href={% static 'blog/images/ico/apple-touch-icon-57-precomposed.png' %} >
+	<script type="text/javascript">
+	var cust_id={{ user.id }};
+	var post_url={% url 'processbids' %};
+	var post_url_max={% url 'getmaxbidder' %};
+	var csrftoken = $.cookie('csrftoken');
+	var getCurrentDateTimeUrl={% url 'CurrrentDateTime' %}
+	var searchUrl={% url 'search' %}
+	var viewUrl={% url 'search' %}
+	var myVar={};
+</script>
+</head>
+
+<body>
+<header id="header"><!--header-->
+        <div class="header_top"><!--header_top-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="contactinfo">
+                            <ul class="nav nav-pills">
+                                <li><a href=""><i class="fa fa-phone"></i> +1 469-353-3009</a></li>
+                                <li><a href=""><i class="fa fa-envelope"></i> info@e-bid.com</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="social-icons pull-right">
+                            <ul class="nav navbar-nav">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/header_top-->
+        
+        <div class="header-middle"><!--header-middle-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="logo pull-left">
+                            <a href="{% url 'index' %}"><img src={% static 'blog/images/home/logo.png' %} alt="" /></a>
+                        </div>
+                        <div class="btn-group pull-right">
+                            <div class="btn-group">
+                            </div>
+                            
+                            <div class="btn-group">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="shop-menu pull-right">
+                            <ul class="nav navbar-nav" >
+								{% if user and not user.is_anonymous %}
+								<li style = "color:green;">Hello {{user}}</li>
+                                <li ><a href="{% url 'account_management' %}" ><i class="fa fa-user"></i> Account</a></li>
+								<li><a href="{% url 'orderhistory' %}" ><i class="fa fa-user"></i> Order History</a></li>
+                                <li><a href="{% url 'logoutview' %}"><i class="fa fa-lock">Logout</i></a></li>
+								{% else %}
+                                <li><a href="{% url 'loginform' %}" ><i class="fa fa-lock"></i> Login</a></li>
+								{% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/header-middle-->
+    
+        <div class="header-bottom"><!--header-bottom-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="mainmenu pull-left">
+                            <ul class="nav navbar-nav collapse navbar-collapse">
+                                <li><a href="{% url 'index' %}" >Home</a></li>
+                                <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
+                                    <ul role="menu" class="sub-menu">
+                                        <li><a href="{% url 'buy_bids' %}">Buy Bids</a></li> 
+                                    </ul>
+                                </li>
+                                 <li class="dropdown"><a href="{% url 'products_in_category' 1 %}">Category<i class="fa fa-angle-down"></i></a>
+                                    <ul role="menu" class="sub-menu">
+                                        <li><a href="{% url 'products_in_category' 1 %}">Clothing</a></li>
+                                        <li><a href="{% url 'products_in_category' 2 %}">Electronics</a></li>
+                                        <li><a href="{% url 'products_in_category' 3 %}">Furniture</a></li>
+                                        <li><a href="{% url 'products_in_category' 4 %}">Musical</a></li>
+                                        <li><a href="{% url 'products_in_category' 5 %}">Shoes</a></li>
+                                        <li><a href="{% url 'products_in_category' 6 %}">Sports</a></li>
+                                        <li><a href="{% url 'products_in_category' 7 %}">Toys</a></li>
+                                    </ul>
+                                </li> 
+                                <li><a href="{% url 'addproduct' %}">Add Products</a></li>
+								<li><a href="{% url 'mybidproducts' %}">My Bid Products</a></li>
+								                                 <li class="dropdown"><a href="{% url 'products_in_category' 1 %}">Category<i class="fa fa-angle-down"></i></a>
+
+                                </li> 
+
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="search_box pull-right">
+							{{ f.as_table }}
+                            <input type="text" placeholder="Search" />
+							<div id="search1"></div>
+							
+							
+							
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/header-bottom-->
+    </header><!--/header-->
+
+<div id="content">
+    {% block content %}
+    {% endblock %}
+</div> 
+
+<footer id="footer"><!--Footer-->
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="companyinfo">
+                            <h2><span>e</span>-Bid</h2>
+                            <p>Bid , win and grin !</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="col-sm-3">
+                            <div class="video-gallery text-center">
+                                <a href="#">
+                                    <div class="iframe-img">
+                                        <img src={% static 'blog/images/home/iframe1.jpg' %} alt="" />
+                                    </div>
+                                    <div class="overlay-icon">
+                                        <i class="fa fa-play-circle-o"></i>
+                                    </div>
+                                </a>
+
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-3">
+                            <div class="video-gallery text-center">
+                                <a href="#">
+                                    <div class="iframe-img">
+                                        <img src={% static 'blog/images/home/iframe2.jpg' %} alt="" />
+                                    </div>
+                                    <div class="overlay-icon">
+                                        <i class="fa fa-play-circle-o"></i>
+                                    </div>
+                                </a>
+
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-3">
+                            <div class="video-gallery text-center">
+                                <a href="#">
+                                    <div class="iframe-img">
+                                        <img src={% static 'blog/images/home/iframe3.jpg' %} alt="" />
+                                    </div>
+                                    <div class="overlay-icon">
+                                        <i class="fa fa-play-circle-o"></i>
+                                    </div>
+                                </a>
+
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-3">
+                            <div class="video-gallery text-center">
+                                <a href="#">
+                                    <div class="iframe-img">
+                                        <img src={% static 'blog/images/home/iframe4.jpg' %} alt="" />
+                                    </div>
+                                    <div class="overlay-icon">
+                                        <i class="fa fa-play-circle-o"></i>
+                                    </div>
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+					<br>
+                    <div class="col-sm-3">
+                        <div class="address">
+                            <img src={% static 'blog/images/home/map.png' %} alt="" />
+                            <p>Universityof Texas at Dallas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+       
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <p class="pull-left">Copyright © 2015 E-BID Inc. All rights reserved.</p>
+                    <p class="pull-right">Designed by <span>Web Warriors</span></p>
+                </div>
+            </div>
+        </div>   
+    </footer><!--/Footer-->
+</body>
+</html>

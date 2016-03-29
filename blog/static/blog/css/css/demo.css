@@ -1,0 +1,73 @@
+/*
+	Todd Motto Labs
+	URL: www.toddmotto.com
+*/
+
+/*------------------------------------*\
+   Clickable Dropdown
+\*------------------------------------*/
+
+body {
+	background:url(../img/bg.png);
+}
+.search_box {
+	margin:100px auto;
+	width:200px;
+}
+.search_box ul {
+	font-weight:900;
+}
+.search_box ul li {
+	position:relative;
+	list-style:none;
+	cursor:pointer;
+}
+.search_box ul li ul {
+	position:absolute;
+	left:0;
+	right:0;
+}
+.search_box ul .clicker {
+	background:#2284B5;
+	color:#FFF;
+}
+.search_box ul .clicker:hover,
+.search_box ul .active {
+	background:#196F9A;
+}
+.search_box img {
+	position:absolute;
+	top:9px;
+	left:12px;
+}
+.search_box ul li a {
+	transition:background-color 0.2s ease-in-out;
+	-webkit-transition:background-color 0.2s ease-in-out;
+	-moz-transition:background-color 0.2s ease-in-out;
+	display:block;
+	padding:8px 10px 8px 40px;
+	background:#FFF;
+	color:#333;
+	text-decoration:none;
+}
+.search_box ul li a:hover {
+	background:#F2F2F2;
+}
+/* Fallbacks */
+.search_box .no-js ul {
+	display:none;
+}
+.search_box .no-js:hover ul {
+	display:block;
+}
+
+.searchlist li a {
+	transition:background-color 0.2s ease-in-out;
+	-webkit-transition:background-color 0.2s ease-in-out;
+	-moz-transition:background-color 0.2s ease-in-out;
+	display:block;
+	padding:8px 10px 8px 40px;
+	background:#FFF;
+	color:#333;
+	text-decoration:none;
+}

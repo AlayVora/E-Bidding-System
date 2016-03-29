@@ -1,0 +1,11 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<h1>Welcome {{ user.first_name }}  {{ user.last_name }} to E-BID's Category Page</h1>
+<table>
+{% for c in choices %}
+    <tr>
+    	<td id={{ c.0 }} > <a href={% url 'products_in_category' c.0 %} > {{ c.1 }} </a></td>
+    </tr>
+{% endfor %}
+</table>
+{% endblock content %}

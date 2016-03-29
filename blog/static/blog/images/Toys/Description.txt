@@ -1,0 +1,6 @@
+1 Car 10$
+2 Duck 5$
+3 Minion 18$
+4 Bear  7$
+5 Pokemon 11$
+6 Aeroplane 15$

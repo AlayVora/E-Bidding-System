@@ -1,0 +1,6 @@
+1 Flute 20$
+2 LPZ03 Seven Electric Guitar 200$
+3 Tabla 150$
+4 Piano 300$
+5 Drums	500$
+6 Violin 150$

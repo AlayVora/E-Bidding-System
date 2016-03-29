@@ -1,0 +1,109 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+{% load staticfiles %}
+<style type="text/css">
+    .inputclass {
+  background: #F0F0E9;
+  border: medium none;
+  color: #696763;
+  display: block;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  height: 40px;
+  margin-bottom: 10px;
+  outline: medium none;
+  padding-left: 10px;
+  width: 100%;
+}
+
+.login-form form span{
+  line-height: 25px;
+}
+
+.inputclass input {
+  width: 15px;
+  float: left;
+  height: 15px;
+  margin-right: 5px;
+}
+
+
+
+.btn {
+  background: #FE980F;
+  border: medium none;
+  border-radius: 0;
+  color: #FFFFFF;
+  display: block;
+  font-family: 'Roboto', sans-serif;
+  padding: 6px 25px;
+}
+</style>
+<table border="0" align="centre">
+	<tr>
+		<td align="center" valign="middle"><img style="margin-left:125px" src={% static 'blog/images/4/doll2.png' %} alt="" /></td>
+		<td align="center" valign="middle" >
+			<h1 style="margin-left:110px; color:orange">Buy bids</h1>
+			<span style="width:200px;margin-left:110px;color: red;" id="error_msg">{{ error }}</span>
+			<pre style="width:400px;margin-left:120px;color:orange" ><h3> $1=1 bid</h3>
+            <h4>Available Bids: $<span id="available_bids"></span></h4></pre>
+			<div>
+			<div  class="login-form">
+
+			<table>
+			<tr><td></td><td><input  style="width:200px;margin-left:120px;" class="inputclass" id="buybid_text" type="text" /></td></tr>
+			<tr><td></td><td style="text-align:center"><input style="width:200px;margin-left:120px;" class="btn" id="buybid_button" type="button" value="Submit"/></td></tr>
+			</table>
+
+			</div>
+			</div>
+			
+		</td>
+		<td><img style="margin-left:100px" src={% static 'blog/images/4/doll2.png' %} alt="" /></td>
+	</tr>	
+</table>
+<br><br><br>
+<script>
+var buybidserviceURL = {% url 'buybidservice' %};
+
+    $(document).ready(function(){
+    bid_ajax();
+        $("#buybid_button").click(function(){
+            bid_ajax();
+        });
+    });
+
+    function bid_ajax(){
+    var bid_val=$("#buybid_text").val();
+
+             if(bid_val<=0 || bid_val=="" || isNaN(bid_val))
+             {
+                bid_val=0;
+             }
+             $.ajax({
+				        url : buybidserviceURL, // the endpoint
+				        type : "GET", // http method
+				        beforeSend: function(xhr, settings) {
+					        if (!this.crossDomain) {
+					            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+					        }
+					    },
+						data:{
+							'no_of_bids':bid_val
+						},
+				        success : function(data) {
+
+							$("#available_bids").html(data['available_bids']);
+				        },
+
+				        // handle a non-successful response
+				        error : function(xhr,errmsg,err) {
+				           console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+				        }
+		    });
+
+    }
+</script>
+
+{% endblock content %}

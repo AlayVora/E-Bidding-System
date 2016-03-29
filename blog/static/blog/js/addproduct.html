@@ -1,0 +1,29 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="./jquery.datetimepicker.css"/>
+<script src="./jquery.js"></script>
+<script src="./jquery.datetimepicker.js"></script>
+<table border="0" align="centre">
+	<tr>
+		<td><img style="margin-left:100px" src={% static 'blog/images/4/shopping.png' %} alt="" /></td>
+		<td align="center" valign="middle" >
+			<h1 style="color:orange">Welcome to E-BID's Add Product Page</h1>
+			<span id="error_mag">{{ error }}</span>
+			<form style="color:orange" action="{% url 'addproduct' %}" method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			<table>
+			{{ form.as_table }}
+			<tr><td></td><td><br><input type="submit" value="Submit"/></td></tr>
+			</table>
+			</form>
+			
+		</td>
+		
+	</tr>	
+</table>
+<input type="text" class="some_class" value="" id="some_class_1"/>
+<script>
+$('.some_class').datetimepicker();
+</script>
+{% endblock content %}

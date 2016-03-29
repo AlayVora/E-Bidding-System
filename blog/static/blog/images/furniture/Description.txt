@@ -1,0 +1,5 @@
+1 Sofa 300$
+2 KingSize Bed 400$
+3 Computer chair and Table 100$
+4 Chair 30$
+5 Dining Table 200$

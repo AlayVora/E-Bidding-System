@@ -1,0 +1,26 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+{% load staticfiles %}
+<table border="0" align="centre">
+	<tr>
+		<td><img style="margin-left:100px" src={% static 'blog/images/4/shopping.png' %} alt="" /></td>
+		<td align="center" valign="middle" >
+			<h1 style="color:orange">Welcome to E-BID's Add Product Page</h1>
+		<div class="signup-form" style="margin-left:0px">
+			<span id="error_mag" style ="color: red;">{{ error }}</span>
+			<form class="signup-form" style="color:orange" action="{% url 'addproduct' %}" method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			<table>
+			{{ form.as_table }}
+			<tr><td></td><td><br><input type="submit" value="Submit"/></td></tr>
+			</table>
+			</form>	
+			<div>
+		</td>
+		
+	</tr>	
+</table>
+<script>
+$('.some_class').datetimepicker();
+</script>
+{% endblock content %}

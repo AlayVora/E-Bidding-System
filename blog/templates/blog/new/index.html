@@ -1,0 +1,41 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+{% load staticfiles %}
+ 	
+    <script src={% static 'blog/js/js-image-slider.js' %} ></script>
+    
+    
+    <div id="sliderFrame">
+        <div id="slider">
+        	<img src={% static 'blog/images/4/slider-1.jpg' %} alt="" />
+        	<img src={% static 'blog/images/4/slider-2.jpg' %} alt="" />
+        	<img src={% static 'blog/images/4/slider-3.jpg' %} alt="" />
+        	<img src={% static 'blog/images/4/slider-4.jpg' %} alt="" />
+        </div>
+        <!--Custom navigation buttons on both sides-->
+        <div class="group1-Wrapper">
+            <a onclick="imageSlider.previous()" class="group1-Prev"></a>
+            <a onclick="imageSlider.next()" class="group1-Next"></a>
+        </div>
+        <!--nav bar-->
+        <div style="text-align:center;padding:20px;z-index:20;">
+            <a onclick="imageSlider.previous()" class="group2-Prev"></a>
+            <a id='auto' onclick="switchAutoAdvance()"></a>
+            <a onclick="imageSlider.next()" class="group2-Next"></a>
+        </div>
+    </div>
+    <script type="text/javascript">
+        //The following script is for the group 2 navigation buttons.
+        function switchAutoAdvance() {
+            imageSlider.switchAuto();
+            switchPlayPauseClass();
+        }
+        function switchPlayPauseClass() {
+            var auto = document.getElementById('auto');
+            var isAutoPlay = imageSlider.getAuto();
+            auto.className = isAutoPlay ? "group2-Pause" : "group2-Play";
+            auto.title = isAutoPlay ? "Pause" : "Play";
+        }
+        switchPlayPauseClass();
+    </script>
+{% endblock content %}

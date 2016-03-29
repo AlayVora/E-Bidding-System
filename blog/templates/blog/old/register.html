@@ -1,0 +1,34 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+{% load staticfiles %}
+
+<table border="0" align="centre">
+	<tr>
+		<td align="center" valign="middle"><img style="margin-left:50px;" src={% static 'blog/images/4/register.png' %} alt="" /></td>
+		<td style="border:1pt solid orange;border-style: solid;border-width: 5px; margin-left:10px;" align="center" valign="middle" >
+			<h1 class="mainmenu pull-left" style="margin-left:70px;margin-right:150px;color:orange;">Welcome to E-BID's Registration Page</h1>
+			<br>
+			<br>
+			<br>
+			<br>
+			<div class="signup-form" style="margin-left:0px">
+			<form action="{% url 'process_register' %}" method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			<table>
+			{{ form.as_table }}
+			<tr><td></td><td><input type="submit" value="Submit"/></td>
+			</tr>
+			</table>
+			<a href= "{% url 'loginform' %}" style="margin-left:100px;font-size: 150%;color:orange;"><img style="margin-left:10px;" src={% static 'blog/images/4/register1.png' %} alt="" /></a>
+			</div>
+		</td>
+		<td align="center" valign="middle">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>
+	</tr>	
+</table>
+<br>
+<br>
+<br>
+{% endblock content %}
+
+
+

@@ -1,0 +1,38 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+{% load staticfiles %}
+<div class ="row" style ="margin-left:160px;">
+<table border="0" align="centre">
+	<tr>
+		<td align="center" valign="middle"><img style="margin-left:0px;" src={% static 'blog/images/4/log.png' %} alt="" /></td>
+		<td style="border:1pt solid orange;border-style: solid;border-width: 2px;" align="center" valign="middle" >
+			<h1 class="mainmenu pull-left" style="margin-right: 150px;margin-left: 150px;;color:orange;">&nbsp;Login in to e-Bid.com</h1>
+			<br><br><br><br><br>
+			<div class="login-form" style="margin-left:20px;">
+			<form action="{% url 'loginform' %}" method="post" enctype="multipart/form-data">
+						{% csrf_token %}
+			{% if error %}
+      {{ error }}!
+
+   {% endif %}
+			{% csrf_token %}
+			<table>
+			{{ form.as_table }}
+			<tr><td></td><td><input type="submit" value="Submit"/></td>
+			</tr>
+			<tr><td><a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">Login with Facebook<img href={% static 'blog/images/facebook.jpeg' %} ></img></a></td><td><a href= "{% url 'process_register' %}" style="margin-left:90px;font-size: 150%;color:orange"><img style="margin-left:10px;" src={% static 'blog/images/4/register1.png' %} alt="Register Here" /></a></a>
+</td></tr>
+			</table>
+						
+
+			</div>
+		</td>
+		<td><img style="margin-left:2px;" src={% static 'blog/images/4/log.png' %} alt="" /></td>
+	</tr>	
+</table>
+</div>
+<br><br><br><br>
+{% endblock content %}
+
+
+

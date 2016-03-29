@@ -1,0 +1,143 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+{% load staticfiles %}
+
+<script src={% static 'blog/js/productsincategory.js' %} ></script>
+
+
+<style type = "text/css">
+.bid_button {
+	-moz-box-shadow: 0px 1px 11px 2px #9fb4f2;
+	-webkit-box-shadow: 0px 1px 11px 2px #9fb4f2;
+	box-shadow: 0px 1px 11px 2px #9fb4f2;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #731212), color-stop(1, #ff5619));
+	background:-moz-linear-gradient(top, #731212 5%, #ff5619 100%);
+	background:-webkit-linear-gradient(top, #731212 5%, #ff5619 100%);
+	background:-o-linear-gradient(top, #731212 5%, #ff5619 100%);
+	background:-ms-linear-gradient(top, #731212 5%, #ff5619 100%);
+	background:linear-gradient(to bottom, #731212 5%, #ff5619 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#731212', endColorstr='#ff5619',GradientType=0);
+	background-color:#731212;
+	-moz-border-radius:27px;
+	-webkit-border-radius:27px;
+	border-radius:27px;
+	border:1px solid #4e6096;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Times New Roman;
+	font-size:14px;
+	font-weight:bold;
+	padding:8px 6px;
+	text-decoration:none;
+	text-shadow:0px 0px 0px #283966;
+}
+.bid_button:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ff5619), color-stop(1, #731212));
+	background:-moz-linear-gradient(top, #ff5619 5%, #731212 100%);
+	background:-webkit-linear-gradient(top, #ff5619 5%, #731212 100%);
+	background:-o-linear-gradient(top, #ff5619 5%, #731212 100%);
+	background:-ms-linear-gradient(top, #ff5619 5%, #731212 100%);
+	background:linear-gradient(to bottom, #ff5619 5%, #731212 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5619', endColorstr='#731212',GradientType=0);
+	background-color:#ff5619;
+}
+.bid_button:active {
+	position:relative;
+	top:1px;
+}
+
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h1></h1>
+{% csrf_token %}
+	<section>
+		<div class="container">
+   
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="left-sidebar">
+						<h2 style="margin-left:100px;">Category</h2>
+						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
+							{% for c in choices%}
+
+								<div class="panel panel-default">
+									<div class="panel-heading">
+									<h4 class="panel-title"> <a href={% url 'products_in_category' c.0 %} > {{ c.1 }} </a></h4>
+									</div>
+								</div>
+
+							{% endfor %}
+	
+						</div><!--/category-products-->
+					
+					</div>
+				</div>
+				
+				<div class="col-sm-9 padding-right">
+										<h2 class="title text-center" style="margin-left:350px;">Category Products</h2>
+										<br>
+
+					<div class="features_items"><!--features_items-->
+					<br>
+									{% for p in products %}
+									{% with pid=p.id %}
+										<div class="col-sm-4" style="height: 500px;width: 300px;">
+							
+											<div class="product-image-wrapper">
+													<div class="single-products" style="height:500px">
+														<div class="productinfo text-center">
+										
+															<!-- <span class="timer" style="float:right;color:#FF0000"></span> -->
+															Time Remaining: <p class="countdown" style="float:right;color:red"></p>
+
+															<input type="hidden" id="expdatetime_{{ p.id }}" class="expdatetime" value="{{p.expdatetime|date:'Y-m-d H:i:s'}}">
+															
+															<br>
+															<br>
+					
+															<h3>{{ p.product_name }}</h3>
+															
+						
+															<h2>Price: {{ p.price }}$</h2>
+															<p><a href="{% url 'viewproduct' p.id %}"><img src={% static p.product_path %} alt="product image"  width="200" height="200" ></a></p>
+															<p><div class="msg" style="height:50px;width:100px;color:red;border:1px solid red;display:none;text-align:center"><h2>SOLD</h2></div></p>
+						
+															
+															<input id={{ p.id }} type="text"> &nbsp;&nbsp;<input class="bid_button" type="button" value="Bid now">
+															<p class="current_max_bid" style="float:left;color:#FF0000;margin-left:60px"></p>
+																									 <script type="text/javascript">
+    setTimeout(function(){
+        callAjaxInitial( {{ p.id }} );
+        myVar[{{ p.id }}]=setInterval(function(){callAjaxInitial( {{ p.id }} );},3000);
+        },500);
+    </script>
+														</div>
+										
+										
+													</div>
+													
+											</div>
+										</div>
+
+    {% endwith %}
+{% endfor %}
+
+</table>
+</form>
+					</div>
+				</div>
+{% endblock content %}
